@@ -20,11 +20,10 @@ RUN mv nomad /usr/bin/nomad
 RUN mkdir /etc/nomad.d
 RUN chmod a+w /etc/nomad.d
 
-RUN wget https://github.com/nateleavitt/nomad-docker -O server1.hcl --no-check-certificate
+RUN wget https://github.com/nateleavitt/nomad-docker/raw/master/server1.hcl --no-check-certificate
 RUN mkdir server1
-RUN mv server1.hcl server1/
-RUN cd server1
 
-EXPOSE 4647 #For server service discovery
+#For server service discovery
+EXPOSE 4647
 
 CMD ["nomad", "agent", "-config", "server1.hcl"]
