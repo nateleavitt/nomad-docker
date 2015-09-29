@@ -11,7 +11,7 @@ RUN apt-get update \
 # Download Nomad
 RUN echo 'Fetching Nomad...'
 
-RUN cd /tmp/
+WORKDIR /tmp/
 RUN wget https://s3.amazonaws.com/hc-public/nomad/0.1.0dev/nomad_linux_amd64 -O nomad --no-check-certificate
 RUN echo 'Installing Nomad...'
 #unzip nomad.zip
@@ -19,3 +19,11 @@ RUN chmod +x nomad
 RUN mv nomad /usr/bin/nomad
 RUN mkdir /etc/nomad.d
 RUN chmod a+w /etc/nomad.d
+
+RUN wget https://github.com/nateleavitt/nomad-docker -O server1.hcl --no-check-certificate
+RUN mkdir server1
+RUN mv server1.hcl server1
+
+EXPOSE 4647 #For server service discovery
+
+CMD ["nomad", "agent", "-config", "server.hcl"]
