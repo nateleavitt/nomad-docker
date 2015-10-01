@@ -4,6 +4,8 @@ log_level = "DEBUG"
 # Setup data dir
 data_dir = "/tmp/server1"
 
+bind_addr = 192.168.99.100
+
 # Enable the server
 server {
     enabled = true

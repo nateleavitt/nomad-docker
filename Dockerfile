@@ -26,4 +26,3 @@ RUN mkdir server1
 #For server service discovery
 EXPOSE 4647
 
-CMD ["nomad", "agent", "-config", "server1.hcl"]
